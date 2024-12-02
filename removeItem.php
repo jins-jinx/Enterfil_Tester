@@ -82,10 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="submit" class="btn" value="Delete Filter">
             </form>
         <?php } ?>
-
-        <!-- Return to homepage button -->
-        <form method="get" action="homepage.php">
-            <button type="submit" class="btn">Return to Homepage</button>
+        <form method="post" action="homepage.php">
+            <input type="submit" class="btn" value="Back to Dashboard">
         </form>
 
         <!--Display Filters Table-->

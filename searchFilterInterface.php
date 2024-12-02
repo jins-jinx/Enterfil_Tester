@@ -29,6 +29,9 @@ if (isset($_GET['error']) && $_GET['error'] == 1) {
           </div>
          <input type="submit" class="btn" value="Search" name="searchButton">
         </form>
+        <form method="post" action="homepage.php">
+            <input type="submit" class="btn" value="Back to Dashboard">
+        </form>
 
         <!--Display Filters Table-->
         <?php
