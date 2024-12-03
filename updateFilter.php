@@ -9,23 +9,29 @@ if(isset($_POST['updateButton'])){
     $MaxStock = $_POST['maxStock'];
     $LowStockSignal = $_POST['lowStock'];
 
-
-    $updateQuery = "UPDATE filters 
-                    SET FilterName = '$FilterName', 
-                        Materials = '$Materials', 
-                        Quantity = '$Quantity', 
-                        MaxStock = '$MaxStock', 
-                        LowStockSignal = '$LowStockSignal'
-                    WHERE FilterCode = '$FilterCode'";
-
-    if($conn->query($updateQuery) === TRUE){
+    if ($Quantity > $MaxStock) {
         echo '<script>
-            alert("Filter successfully updated");
-            window.location.href = "homepage.php";
-          </script>';
-        exit();
-    } else {
-        echo "Error: " . $conn->error; 
+                alert("ERROR: Quantity can not be larger than the maximum stock.");
+                window.location.href = "searchFilterInterface.php";
+            </script>';
+    } else{
+        $updateQuery = "UPDATE filters 
+                        SET FilterName = '$FilterName', 
+                            Materials = '$Materials', 
+                            Quantity = '$Quantity', 
+                            MaxStock = '$MaxStock', 
+                            LowStockSignal = '$LowStockSignal'
+                        WHERE FilterCode = '$FilterCode'";
+        
+        if($conn->query($updateQuery) === TRUE){
+            echo '<script>
+                alert("Filter successfully updated");
+                window.location.href = "homepage.php";
+            </script>';
+            exit();
+        } else {
+            echo "Error: " . $conn->error; 
+        }
     }
 }
 ?>
